@@ -34,4 +34,31 @@ class SelectionSort extends Controller
 
         return $newArray;
     }
+
+    public function sort($arr)
+    {
+        $startingIndex = 0;
+        $arraySize = count($arr) - 1;
+
+        while ($startingIndex < $arraySize) {
+            $lowestValue = $arr[$startingIndex];
+            $lowestValueIndex = $startingIndex;
+            $secondIndex = $startingIndex + 1;
+
+            for ($i=$secondIndex; $i < $arraySize; $i++) { 
+                if ($arr[$i] < $lowestValue) {
+                    $lowestValue = $arr[$i];
+                    $lowestValueIndex = $i;
+                }
+            }
+
+            $tmp = $arr[$startingIndex];
+            $arr[$startingIndex] = $arr[$lowestValueIndex];
+            $arr[$lowestValueIndex] = $tmp;
+
+            $startingIndex++;
+        }
+
+        return $arr;
+    }
 }
