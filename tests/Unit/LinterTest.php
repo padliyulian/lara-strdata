@@ -38,4 +38,38 @@ class LinterTest extends TestCase
         $res = $linter->lint($code);
         $this->assertEquals(true, $res);
     }
+
+
+    public function test_with_open_brace1()
+    {
+        $linter = new Linter;
+        $code = "{";
+        $res = $linter->lint($code);
+        $this->assertEquals(false, $res);
+    }
+
+    public function test_with_close_brace1()
+    {
+        $linter = new Linter;
+        $code = "}";
+        $res = $linter->lint($code);
+        $this->assertEquals(false, $res);
+    }
+
+    public function test_with_two_brace1()
+    {
+        $linter = new Linter;
+        $code = "{}";
+        $res = $linter->lint($code);
+        $this->assertEquals(true, $res);
+    }
+
+
+    public function test_with_mis_brace()
+    {
+        $linter = new Linter;
+        $code = "(}";
+        $res = $linter->lint($code);
+        $this->assertEquals(false, $res);
+    }
 }
