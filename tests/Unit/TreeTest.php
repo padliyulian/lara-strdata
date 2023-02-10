@@ -32,8 +32,9 @@ class TreeTest extends TestCase
         $tree = new Tree('Musik');
         $tree->root->addChild('Pop');
         $tree->root->addChild('Rock');
-
         $tree->root->children[1]->addChild('korn.mp3');
+
         $this->assertEquals(true, $tree->search('korn.mp3'));
+        $this->assertEquals(array('Musik','Pop','Rock','korn.mp3'), $tree->path);
     }
 }
